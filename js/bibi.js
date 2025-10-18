@@ -3,8 +3,8 @@ let total = 0
 let nowNum = 0
 let items = []
 let page = 1
-let Url = 'https://kkapi.fomal.cc/api/ispeak?author=6319fedef46fae97dcfa5ee2&page=' // 记住替换为你的API链接
-
+// let Url = 'https://kkapi.fomal.cc/api/ispeak?author=6319fedef46fae97dcfa5ee2&page=' // 记住替换为你的API链接
+let Url = "127.0.0.1:80/1.json"
 
 window.addEventListener('DOMContentLoaded', () => {
     getNew();
@@ -18,8 +18,8 @@ function getNew() {
     } catch (error) { }
 
     bibi.innerHTML += '<div id="bb_loading"><img src="/assets/loading3.gif" alt="bb_loading"></div>' // bb_loading图片可以f12在我网站源码下载，也可以使用其他图片。
-
-    fetch(Url + page).then(res => res.json()).then((res) => {
+//  fetch(Url+page).then(res => res.json()).then((res) => {
+    fetch(Url).then(res => res.json()).then((res) => {
         total = res.data.total
         items = res.data.items
         nowNum += items.length
