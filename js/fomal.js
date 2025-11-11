@@ -1119,20 +1119,12 @@ function createtime1() {
   var dnum = Math.floor(days);
 
   var ascll = [
-    `欢迎来到Sunriseの小家!`,
-    `Future is now 🍭🍭🍭`,
-    `
-        
-███████  ██████  ███    ███  █████  ██      ██   ██  █████  ██    ██ ████████ 
-██      ██    ██ ████  ████ ██   ██ ██      ██   ██ ██   ██ ██    ██    ██    
-█████   ██    ██ ██ ████ ██ ███████ ██      ███████ ███████ ██    ██    ██    
-██      ██    ██ ██  ██  ██ ██   ██ ██      ██   ██ ██   ██ ██    ██    ██    
-██       ██████  ██      ██ ██   ██ ███████ ██   ██ ██   ██  ██████     ██   
-                                              
-`,
+    `欢迎来到Sunrise的博客!\n`,
+    `Keep Learning\n`,
+    '\n',
     "小站已经苟活",
     dnum,
-    "天啦!",
+    "天啦!\n",
     "©2025 By Sunrise",
   ];
 
@@ -2608,18 +2600,18 @@ if ((lunar["IMonthCn"] == "九月" && lunar["IDayCn"] == "初九")) {
 //----------------------------------------------------------------
 
 /* 听话鼠标 start */
-var CURSOR;
+// var CURSOR;
 
-Math.lerp = (a, b, n) => (1 - n) * a + n * b;
+// Math.lerp = (a, b, n) => (1 - n) * a + n * b;
 
-const getStyle2 = (el, attr) => {
-  try {
-    return window.getComputedStyle
-      ? window.getComputedStyle(el)[attr]
-      : el.currentStyle[attr];
-  } catch (e) { }
-  return "";
-};
+// const getStyle2 = (el, attr) => {
+//   try {
+//     return window.getComputedStyle
+//       ? window.getComputedStyle(el)[attr]
+//       : el.currentStyle[attr];
+//   } catch (e) { }
+//   return "";
+// };
 
 // 为了屏蔽异步加载导致无法读取颜色值，这里统一用哈希表预处理
 const map = new Map();
@@ -2636,75 +2628,75 @@ map.set('black', "rgb(0, 0, 0)");
 map.set('darkblue', "rgb(97, 100, 159)");
 map.set('heoblue', "rgb(66, 90, 239)");
 
-class Cursor {
-  constructor() {
-    this.pos = { curr: null, prev: null };
-    this.pt = [];
-    this.create();
-    this.init();
-    this.render();
-  }
+// class Cursor {
+//   constructor() {
+//     this.pos = { curr: null, prev: null };
+//     this.pt = [];
+//     this.create();
+//     this.init();
+//     this.render();
+//   }
 
-  move(left, top) {
-    this.cursor.style["left"] = `${left}px`;
-    this.cursor.style["top"] = `${top}px`;
-  }
+//   move(left, top) {
+//     this.cursor.style["left"] = `${left}px`;
+//     this.cursor.style["top"] = `${top}px`;
+//   }
 
-  create() {
-    if (!this.cursor) {
-      this.cursor = document.createElement("div");
-      this.cursor.id = "cursor";
-      this.cursor.classList.add("hidden");
-      document.body.append(this.cursor);
-    }
-    var el = document.getElementsByTagName('*');
-    for (let i = 0; i < el.length; i++)
-      if (getStyle2(el[i], "cursor") == "pointer")
-        this.pt.push(el[i].outerHTML);
-    var colorVal = map.get(localStorage.getItem("themeColor"));
-    document.body.appendChild((this.scr = document.createElement("style")));
-    this.scr.innerHTML = `* {cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='8px' height='8px'><circle cx='4' cy='4' r='4' opacity='1.0' fill='` + colorVal + `'/></svg>") 4 4, auto}`;
-  }
+//   create() {
+//     if (!this.cursor) {
+//       this.cursor = document.createElement("div");
+//       this.cursor.id = "cursor";
+//       this.cursor.classList.add("hidden");
+//       document.body.append(this.cursor);
+//     }
+//     var el = document.getElementsByTagName('*');
+//     for (let i = 0; i < el.length; i++)
+//       if (getStyle2(el[i], "cursor") == "pointer")
+//         this.pt.push(el[i].outerHTML);
+//     var colorVal = map.get(localStorage.getItem("themeColor"));
+//     document.body.appendChild((this.scr = document.createElement("style")));
+//     this.scr.innerHTML = `* {cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='8px' height='8px'><circle cx='4' cy='4' r='4' opacity='1.0' fill='` + colorVal + `'/></svg>") 4 4, auto}`;
+//   }
 
-  refresh() {
-    this.scr.remove();
-    this.cursor.classList.remove("hover");
-    this.cursor.classList.remove("active");
-    this.pos = { curr: null, prev: null };
-    this.pt = [];
+//   refresh() {
+//     this.scr.remove();
+//     this.cursor.classList.remove("hover");
+//     this.cursor.classList.remove("active");
+//     this.pos = { curr: null, prev: null };
+//     this.pt = [];
 
-    this.create();
-    this.init();
-    this.render();
-  }
+//     this.create();
+//     this.init();
+//     this.render();
+//   }
 
-  init() {
-    document.onmouseover = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.add("hover");
-    document.onmouseout = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.remove("hover");
-    document.onmousemove = e => { (this.pos.curr == null) && this.move(e.clientX - 8, e.clientY - 8); this.pos.curr = { x: e.clientX - 8, y: e.clientY - 8 }; this.cursor.classList.remove("hidden"); };
-    document.onmouseenter = e => this.cursor.classList.remove("hidden");
-    document.onmouseleave = e => this.cursor.classList.add("hidden");
-    document.onmousedown = e => this.cursor.classList.add("active");
-    document.onmouseup = e => this.cursor.classList.remove("active");
-  }
+//   init() {
+//     document.onmouseover = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.add("hover");
+//     document.onmouseout = e => this.pt.includes(e.target.outerHTML) && this.cursor.classList.remove("hover");
+//     document.onmousemove = e => { (this.pos.curr == null) && this.move(e.clientX - 8, e.clientY - 8); this.pos.curr = { x: e.clientX - 8, y: e.clientY - 8 }; this.cursor.classList.remove("hidden"); };
+//     document.onmouseenter = e => this.cursor.classList.remove("hidden");
+//     document.onmouseleave = e => this.cursor.classList.add("hidden");
+//     document.onmousedown = e => this.cursor.classList.add("active");
+//     document.onmouseup = e => this.cursor.classList.remove("active");
+//   }
 
-  render() {
-    if (this.pos.prev) {
-      // 跟踪速度调节
-      this.pos.prev.x = Math.lerp(this.pos.prev.x, this.pos.curr.x, 0.15);
-      this.pos.prev.y = Math.lerp(this.pos.prev.y, this.pos.curr.y, 0.15);
-      this.move(this.pos.prev.x, this.pos.prev.y);
-    } else {
-      this.pos.prev = this.pos.curr;
-    }
-    requestAnimationFrame(() => this.render());
-  }
-}
+//   render() {
+//     if (this.pos.prev) {
+//       // 跟踪速度调节
+//       this.pos.prev.x = Math.lerp(this.pos.prev.x, this.pos.curr.x, 0.15);
+//       this.pos.prev.y = Math.lerp(this.pos.prev.y, this.pos.curr.y, 0.15);
+//       this.move(this.pos.prev.x, this.pos.prev.y);
+//     } else {
+//       this.pos.prev = this.pos.curr;
+//     }
+//     requestAnimationFrame(() => this.render());
+//   }
+// }
 
-(() => {
-  CURSOR = new Cursor();
-  // 需要重新获取列表时，使用 CURSOR.refresh()
-})();
+// (() => {
+//   CURSOR = new Cursor();
+//   // 需要重新获取列表时，使用 CURSOR.refresh()
+// })();
 
 /* 听话鼠标 end */
 
@@ -2957,7 +2949,7 @@ function setColor(c) {
   document.getElementById("themeColor").innerText = `:root{--theme-color:` + map.get(c) + ` !important}`;
   localStorage.setItem("themeColor", c);
   // 刷新鼠标颜色
-  CURSOR.refresh();
+  // CURSOR.refresh();
   // 设置一个带有透明度的主题色，用于菜单栏的悬浮颜色
   var theme_color = map.get(c);
   var trans_theme_color = "rgba" + theme_color.substring(3, theme_color.length - 1) + ", 0.7)";

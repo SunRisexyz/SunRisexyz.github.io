@@ -6730,7 +6730,7 @@ div#archive {
 }
 
 /* 鼠标样式 */
-#cursor {
+/* #cursor {
   position: fixed;
   width: 16px;
   height: 16px;
@@ -6763,7 +6763,7 @@ div#archive {
   -moz-transform: scale(0.5);
   -ms-transform: scale(0.5);
   -o-transform: scale(0.5);
-}
+} */
 
 /* twikoo评论美化 */
 /* 自定义twikoo评论输入框高度 */
